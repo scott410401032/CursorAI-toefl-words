@@ -68,7 +68,29 @@ export default defineConfigWithVueTs(
       'prefer-promise-reject-errors': 'off',
 
       // allow debugger during development only
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+      // 使用單引號
+      'quotes': ['error', 'single'],
+
+      // 使用 2 個空白縮排
+      'indent': ['error', 2],
+
+      // 不允許使用未宣告的變數
+      'no-undef': 'error',
+
+      // 不允許有未使用的變數或函式
+      'no-unused-vars': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
+
+      // 不允許有 console.log
+      'no-console': 'error',
+
+      // 結尾不允許有分號
+      'semi': ['error', 'never'],
+
+      // 空白行不允許超過 1 行
+      'no-multiple-empty-lines': ['error', { 'max': 1 }]
     }
   },
 

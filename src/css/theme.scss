@@ -1,0 +1,487 @@
+// 托福單字練習庫 - 主題樣式
+// Dark Mode 主題色彩配置
+
+// 主色調
+$primary: #25a2c1;
+$secondary: #29b2d4;
+$accent: #4ec1dd;
+
+// 背景色
+$dark: #0f172a;
+$dark-page: #1e293b;
+$dark-card: #334155;
+
+// 文字色
+$dark-text: #f1f5f9;
+$dark-text-secondary: #cbd5e1;
+$dark-text-disabled: #64748b;
+
+// 邊框色
+$dark-border: #475569;
+$dark-separator: #334155;
+
+// 狀態色
+$positive: #10b981;
+$negative: #ef4444;
+$warning: #f59e0b;
+$info: #3b82f6;
+
+// 全域樣式
+body {
+  background-color: $dark;
+  color: $dark-text;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 卡片樣式
+.vocab-card {
+  background: $dark-card;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(37, 162, 193, 0.2);
+    border-color: $primary;
+    background: rgba(30, 41, 59, 0.8);
+  }
+}
+
+// 按鈕樣式
+.btn-primary {
+  background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// 文字樣式
+.text-primary {
+  color: $primary;
+}
+
+.text-secondary {
+  color: $dark-text-secondary;
+}
+
+.text-muted {
+  color: $dark-text-disabled;
+}
+
+.text-success {
+  color: $positive;
+}
+
+.text-error {
+  color: $negative;
+}
+
+.text-warning {
+  color: $warning;
+}
+
+// 背景樣式
+.bg-primary {
+  background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+}
+
+.bg-card {
+  background: $dark-card;
+}
+
+.bg-page {
+  background: $dark-page;
+}
+
+// 測驗樣式
+.quiz-option {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: 500;
+
+  &:hover {
+    background: rgba(37, 162, 193, 0.15);
+    border-color: $primary;
+    transform: translateY(-1px);
+  }
+
+  &.selected {
+    background: rgba(37, 162, 193, 0.25);
+    border-color: $primary;
+    color: white;
+  }
+
+  &.correct {
+    background: rgba(37, 162, 193, 0.2) !important;
+    border: 2px solid rgba(37, 162, 193, 0.6) !important;
+    color: $dark-text !important;
+  }
+
+  &.incorrect {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border: 2px solid rgba(239, 68, 68, 0.6) !important;
+    color: $dark-text !important;
+  }
+}
+
+// 載入動畫
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $dark-border;
+  border-radius: 50%;
+  border-top-color: $primary;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 下拉選單樣式
+.q-select {
+  .q-field__control {
+    color: $dark-text !important;
+  }
+  
+  .q-field__native {
+    color: $dark-text !important;
+  }
+}
+
+// 下拉選單彈出內容樣式 - 強制覆蓋
+.q-menu {
+  background: $dark-card !important;
+  
+  .q-item {
+    color: $dark-text !important;
+    background: transparent !important;
+    
+    &:hover {
+      background: rgba(99, 102, 241, 0.15) !important;
+      color: white !important;
+    }
+    
+    &.q-item--active {
+      background: rgba(99, 102, 241, 0.25) !important;
+      color: white !important;
+    }
+    
+    .q-item__label {
+      color: $dark-text !important;
+    }
+  }
+}
+
+// 分頁控制樣式
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 20px;
+  background: rgba(51, 65, 85, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.pagination-info {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pagination-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+// 分頁下拉選單特殊樣式
+.items-per-page-select {
+  min-width: 80px;
+  
+  .q-field__control {
+    color: $dark-text !important;
+    height: 32px;
+    min-height: 32px;
+  }
+  
+  .q-field__native {
+    color: $dark-text !important;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .q-field__marginal {
+    color: $dark-text-secondary !important;
+  }
+}
+
+// 卡片網格樣式
+.vocab-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  
+  @media (max-width: 600px) {
+    padding: 0 12px;
+    gap: 12px;
+  }
+}
+
+.vocab-card-wrapper {
+  flex: 0 0 calc(33.333% - 11px);
+  min-width: 280px;
+  
+  @media (max-width: 900px) {
+    flex: 0 0 calc(50% - 8px);
+  }
+  
+  @media (max-width: 600px) {
+    flex: 0 0 100%;
+  }
+}
+
+// 動畫類
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 測驗設定對話框樣式
+.quiz-settings-dialog {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  min-width: 450px;
+  max-width: 500px;
+  
+  .dialog-header {
+    background: linear-gradient(135deg, #25a2c1 0%, #29b2d4 100%);
+    border-radius: 16px 16px 0 0;
+    padding: 20px 24px;
+    
+    .text-h5 {
+      color: white !important;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+  
+  .dialog-content {
+    padding: 24px;
+    background: transparent;
+  }
+  
+  .setting-group {
+    margin-bottom: 24px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .setting-label {
+    display: flex;
+    align-items: center;
+    color: $dark-text !important;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    
+    .q-icon {
+      color: #25a2c1;
+      font-size: 1.2rem;
+    }
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .quiz-radio {
+    .q-radio__label {
+      color: $dark-text !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    .q-radio__inner {
+      color: #25a2c1 !important;
+    }
+  }
+  
+  .quiz-select {
+    .q-field__control {
+      background: rgba(51, 65, 85, 0.4) !important;
+      border: 1px solid rgba(99, 102, 241, 0.3) !important;
+      border-radius: 8px !important;
+      color: $dark-text !important;
+    }
+    
+    .q-field__native {
+      color: $dark-text !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    .q-field__marginal {
+      color: $dark-text-secondary !important;
+    }
+    
+    .q-field__outlined {
+      .q-field__control:before {
+        border: 1px solid rgba(99, 102, 241, 0.3) !important;
+      }
+    }
+  }
+  
+  .dialog-actions {
+    padding: 16px 24px 24px;
+    background: transparent;
+    gap: 12px;
+    
+    .cancel-btn {
+      color: $dark-text-secondary !important;
+      font-weight: 500;
+      
+      &:hover {
+        background: rgba(99, 102, 241, 0.1) !important;
+        color: $dark-text !important;
+      }
+    }
+    
+    .start-btn {
+      background: linear-gradient(135deg, #25a2c1 0%, #29b2d4 100%) !important;
+      color: white !important;
+      font-weight: 600;
+      padding: 8px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+      }
+      
+      &:disabled {
+        background: rgba(99, 102, 241, 0.3) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// 測驗頁面樣式
+.submit-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: white !important;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+  }
+  
+  &:disabled {
+    background: rgba(99, 102, 241, 0.3) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.sticky-progress {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.progress-circle {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(37, 162, 193, 0.3);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.progress-text {
+  color: $dark-text;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}

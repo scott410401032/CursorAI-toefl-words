@@ -1,102 +1,140 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+  <q-layout view="hHh Lpr lFf" class="bg-dark">
+    <q-header elevated class="bg-dark-card">
+      <q-toolbar class="q-px-md">
+        <!-- Logo 和網站名稱 -->
+        <div class="row items-center q-gutter-sm">
+          <q-avatar size="40px" class="bg-primary">
+            <q-icon name="school" color="white" />
+          </q-avatar>
+          <div class="text-h6 text-dark-text font-weight-medium">
+            英文單字書練習庫
+          </div>
+        </div>
+
+        <q-space />
+
+        <!-- 桌面版導航選單 -->
+        <div class="gt-sm">
+          <q-tabs
+            v-model="activeTab"
+            class="text-white"
+            indicator-color="white"
+            active-color="white"
+            align="left"
+            no-caps
+          >
+            <q-route-tab
+              name="home"
+              label="Home"
+              to="/"
+              exact
+            />
+
+            <q-tab name="vocabulary" label="Vocabulary">
+              <q-menu
+                class="bg-dark-card"
+                anchor="bottom left"
+                self="top left"
+                :offset="[0, 10]"
+              >
+                <q-list class="bg-dark-card">
+                  <q-item
+                    clickable
+                    v-close-popup
+                    to="/toefl"
+                    class="text-dark"
+                  >
+                    <q-item-section>
+                      <q-item-label>托福單字</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    v-close-popup
+                    to="/daily"
+                    class="text-dark"
+                  >
+                    <q-item-section>
+                      <q-item-label>一般單字</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-tab>
+
+            <q-tab name="quiz" label="Quiz">
+              <q-menu
+                class="bg-dark-card"
+                anchor="bottom left"
+                self="top left"
+                :offset="[0, 10]"
+              >
+                <q-list class="bg-dark-card">
+                  <q-item
+                    clickable
+                    v-close-popup
+                    to="/quiz-toefl"
+                    class="text-dark"
+                  >
+                    <q-item-section>
+                      <q-item-label>托福單字</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    v-close-popup
+                    to="/quiz-daily"
+                    class="text-dark"
+                  >
+                    <q-item-section>
+                      <q-item-label>一般單字</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-tab>
+          </q-tabs>
+        </div>
+
+        <!-- 外部連結 -->
         <q-btn
           flat
-          dense
           round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+          icon="open_in_new"
+          class="text-white"
+          @click="openExternalLink"
+        >
+          <q-tooltip class="bg-dark-card text-dark">
+            前往 jeremyho.tw
+          </q-tooltip>
+        </q-btn>
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
+    <q-page-container class="bg-dark">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+const route = useRoute()
 
-const leftDrawerOpen = ref(false);
+// 根據當前路由設定 active tab
+const activeTab = computed(() => {
+  const path = route.path
+  if (path === '/') return 'home'
+  if (path.startsWith('/toefl') || path.startsWith('/daily')) return 'vocabulary'
+  if (path.startsWith('/quiz')) return 'quiz'
+  return 'home'
+})
 
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
+function openExternalLink() {
+  window.open('https://jeremyho.tw/', '_blank')
 }
 </script>

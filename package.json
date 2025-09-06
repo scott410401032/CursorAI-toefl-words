@@ -10,6 +10,7 @@
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
+    "prebuild": "tsx scripts/loadVocabulary.ts",
     "build": "quasar build",
     "postinstall": "quasar prepare"
   },
@@ -30,7 +31,8 @@
     "@types/node": "^20.5.9",
     "@quasar/app-vite": "^2.1.0",
     "autoprefixer": "^10.4.2",
-    "typescript": "~5.5.3"
+    "typescript": "~5.5.3",
+    "tsx": "^4.7.0"
   },
   "engines": {
     "node": "^28 || ^26 || ^24 || ^22 || ^20 || ^18",
