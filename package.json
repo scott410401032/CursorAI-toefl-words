@@ -12,7 +12,8 @@
     "dev": "quasar dev",
     "prebuild": "tsx scripts/loadVocabulary.ts",
     "build": "quasar build",
-    "postinstall": "quasar prepare"
+    "postinstall": "quasar prepare",
+    "deploy": "vercel"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
