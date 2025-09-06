@@ -513,6 +513,15 @@ body {
   }
 }
 
+// 測驗選項樣式 - 確保文字不被轉換為大寫
+.quiz-card .q-btn {
+  text-transform: none !important;
+  
+  .text-body1 {
+    text-transform: none !important;
+  }
+}
+
 // 測驗頁面樣式
 .submit-btn {
   background: linear-gradient(135deg, #25a2c1 0%, #29b2d4 100%) !important;

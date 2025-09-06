@@ -304,7 +304,7 @@ const canStartQuiz = computed(() => {
 })
 
 const answeredQuestions = computed(() => {
-  return Object.values(userAnswers.value).filter(answer => answer !== undefined).length
+  return Object.values(userAnswers.value).filter(answer => answer !== undefined && answer !== null).length
 })
 
 // 載入單字資料
@@ -333,7 +333,7 @@ function startQuiz() {
   const selectedWords = shuffledWords.slice(0, quizSettings.value.questionCount)
 
   // 生成測驗題目
-  quizQuestions.value = selectedWords.map(word => {
+  quizQuestions.value = selectedWords.map((word, index) => {
     // 隨機選擇題型
     const questionType = Math.random() < 0.5 ? 'word-to-definition' : 'definition-to-word'
 
@@ -344,7 +344,7 @@ function startQuiz() {
       const correctAnswer = options.indexOf(word.definition)
 
       return {
-        id: word.id.toString(),
+        id: `q-${index}-${word.id}-word-to-definition`,
         type: 'word-to-definition',
         word: word.word,
         definition: word.definition,
@@ -360,7 +360,7 @@ function startQuiz() {
       const correctAnswer = options.indexOf(word.word)
 
       return {
-        id: word.id.toString(),
+        id: `q-${index}-${word.id}-definition-to-word`,
         type: 'definition-to-word',
         word: word.word,
         definition: word.definition,
@@ -422,12 +422,16 @@ function generateWrongDefinitions(correctDefinition: string, allWords: Word[]): 
 
 // 選擇答案
 function selectAnswer(questionId: string, optionIndex: number) {
+  // 確保答案被正確設置
   userAnswers.value[questionId] = optionIndex
+  // 強制觸發響應式更新
+  userAnswers.value = { ...userAnswers.value }
 }
 
 // 檢查是否已選擇
 function isSelected(questionId: string, optionIndex: number): boolean {
-  return userAnswers.value[questionId] === optionIndex
+  const userAnswer = userAnswers.value[questionId]
+  return userAnswer !== undefined && userAnswer !== null && userAnswer === optionIndex
 }
 
 // 獲取選項樣式
