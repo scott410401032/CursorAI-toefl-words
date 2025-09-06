@@ -19,16 +19,16 @@ function parseMarkdownTableRow(line: string): Word | null {
     return null
   }
 
-  if (!partOfSpeech || !definition || !example) {
+  if (!word) {
     return null
   }
 
   return {
     id: 0, // 稍後會重新編號
     word: word.trim(),
-    partOfSpeech: partOfSpeech.trim(),
-    definition: definition.trim(),
-    example: example.trim()
+    partOfSpeech: partOfSpeech ? partOfSpeech.trim() : '',
+    definition: definition ? definition.trim() : '',
+    example: example ? example.trim() : ''
   }
 }
 
