@@ -61,7 +61,7 @@
           class="vocab-card-wrapper"
         >
           <q-card class="vocab-card h-full">
-            <q-card-section class="q-pa-md">
+            <q-card-section class="q-pa-md d-flex flex-column h-full">
               <div class="row items-start justify-between q-mb-sm">
                 <div class="text-h5 text-primary font-weight-bold">
                   {{ word.word }}
@@ -84,11 +84,11 @@
                 {{ word.partOfSpeech }}
               </div>
 
-              <div class="text-body1 text-dark-text q-mb-sm">
+              <div class="text-body1 text-dark-text q-mb-sm flex-grow">
                 {{ word.definition }}
               </div>
 
-              <div v-if="word.example" class="text-body2 text-dark-text-secondary">
+              <div v-if="word.example" class="text-body2 text-dark-text-secondary mt-auto">
                 {{ word.example }}
               </div>
             </q-card-section>

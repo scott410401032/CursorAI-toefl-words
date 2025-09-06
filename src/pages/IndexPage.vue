@@ -2,9 +2,9 @@
   <q-page class="q-pa-md" style="min-height: 100vh;">
 
     <!-- 隨機單字輪播區塊 -->
-    <div class="q-mb-xl">
-      <div class="text-center q-mb-lg">
-        <h2 class="text-h5 text-dark-text q-mb-md font-weight-bold">每日推薦單字</h2>
+    <div class="q-mb-lg">
+      <div class="text-center q-mb-md">
+        <h2 class="text-h5 text-dark-text q-mb-sm font-weight-bold">每日推薦單字</h2>
         <q-btn-toggle
           v-model="selectedVocabularyType"
           :options="vocabularyTypeOptions"
@@ -26,7 +26,7 @@
               infinite
               autoplay
               :autoplay-interval="3000"
-              height="300px"
+              height="250px"
               class="rounded-borders"
               dark
             >

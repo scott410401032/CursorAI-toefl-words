@@ -45,12 +45,21 @@ body {
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(37, 162, 193, 0.2);
     border-color: $primary;
     background: rgba(30, 41, 59, 0.8);
+  }
+  
+  .q-card__section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -204,8 +213,19 @@ body {
   padding: 12px 20px;
   background: rgba(51, 65, 85, 0.3);
   border-radius: 12px;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(37, 162, 193, 0.2);
   backdrop-filter: blur(10px);
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 8px;
+    padding: 12px;
+  }
 }
 
 .pagination-info {
@@ -307,9 +327,15 @@ body {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
   border-radius: 16px !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(99, 102, 241, 0.3) !important;
-  min-width: 450px;
+  border: 1px solid rgba(37, 162, 193, 0.3) !important;
+  min-width: 320px;
   max-width: 500px;
+  width: 90vw;
+  
+  @media (min-width: 600px) {
+    min-width: 450px;
+    width: auto;
+  }
   
   .dialog-header {
     background: linear-gradient(135deg, #25a2c1 0%, #29b2d4 100%);
@@ -431,17 +457,57 @@ body {
   }
 }
 
+// 左側抽屜選單樣式
+.q-drawer {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  border-right: 1px solid rgba(37, 162, 193, 0.3) !important;
+  
+  .q-list {
+    background: transparent !important;
+  }
+  
+  .q-item {
+    border-radius: 8px;
+    margin-bottom: 4px;
+    
+    &:hover {
+      background: rgba(37, 162, 193, 0.1) !important;
+    }
+    
+    &.q-router-link--active {
+      background: rgba(37, 162, 193, 0.2) !important;
+      color: #25a2c1 !important;
+    }
+  }
+  
+  .q-item-label {
+    color: #f1f5f9 !important;
+  }
+  
+  .q-item-label--header {
+    color: #94a3b8 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  
+  .q-separator {
+    background: rgba(148, 163, 184, 0.2) !important;
+  }
+}
+
 // 測驗頁面樣式
 .submit-btn {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  background: linear-gradient(135deg, #25a2c1 0%, #29b2d4 100%) !important;
   color: white !important;
   font-weight: 600;
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 25px rgba(37, 162, 193, 0.3);
   transition: all 0.3s ease;
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 12px 35px rgba(37, 162, 193, 0.4);
   }
   
   &:disabled {
@@ -458,6 +524,13 @@ body {
   right: 20px;
   transform: translateY(-50%);
   z-index: 1000;
+  
+  @media (max-width: 768px) {
+    right: 5px;   // 更靠近螢幕邊框
+    top: 80px;    // 調整到 header 下方
+    transform: none;
+    scale: 0.7;
+  }
 }
 
 .progress-circle {
@@ -471,6 +544,11 @@ body {
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
   position: relative;
 }
 
@@ -480,6 +558,10 @@ body {
   font-weight: 600;
   text-align: center;
   position: absolute;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

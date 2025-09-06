@@ -2,8 +2,8 @@
   <q-layout view="hHh Lpr lFf" class="bg-dark">
     <q-header elevated class="bg-dark-card">
       <q-toolbar class="q-px-md">
-        <!-- Logo 和網站名稱 -->
-        <div class="row items-center q-gutter-sm">
+        <!-- Logo 和網站名稱 (可點擊回到首頁) -->
+        <div class="row items-center q-gutter-sm cursor-pointer" @click="$router.push('/')">
           <q-avatar size="40px" class="bg-primary">
             <q-icon name="school" color="white" />
           </q-avatar>
@@ -13,6 +13,15 @@
         </div>
 
         <q-space />
+
+        <!-- 手機版 hamburger 選單 -->
+        <q-btn
+          flat
+          round
+          icon="menu"
+          class="text-white lt-md"
+          @click="leftDrawerOpen = !leftDrawerOpen"
+        />
 
         <!-- 桌面版導航選單 -->
         <div class="gt-sm">
@@ -113,6 +122,111 @@
       </q-toolbar>
     </q-header>
 
+    <!-- 左側抽屜選單 (手機版) -->
+    <q-drawer
+      v-model="leftDrawerOpen"
+      :show-if-above="false"
+      bordered
+      class="bg-dark-card"
+      :width="280"
+    >
+      <q-list class="q-pa-md">
+        <q-item
+          clickable
+          to="/"
+          exact
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="home" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>首頁</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="q-my-md" color="grey-7" />
+
+        <q-item-label header class="text-grey-4 q-mb-sm">單字學習</q-item-label>
+
+        <q-item
+          clickable
+          to="/toefl"
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>托福單字</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          to="/daily"
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="book" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>一般單字</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="q-my-md" color="grey-7" />
+
+        <q-item-label header class="text-grey-4 q-mb-sm">測驗</q-item-label>
+
+        <q-item
+          clickable
+          to="/quiz-toefl"
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="quiz" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>托福測驗</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          to="/quiz-daily"
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="quiz" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>一般測驗</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="q-my-md" color="grey-7" />
+
+        <q-item
+          clickable
+          @click="openExternalLink"
+          class="text-white"
+        >
+          <q-item-section avatar>
+            <q-icon name="open_in_new" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>前往 jeremyho.tw</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
     <q-page-container class="bg-dark">
       <router-view />
     </q-page-container>
@@ -120,10 +234,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
+const leftDrawerOpen = ref(false)
 
 // 根據當前路由設定 active tab
 const activeTab = computed(() => {
