@@ -109,7 +109,7 @@
         <q-card
           v-for="(question, index) in quizQuestions"
           :key="question.id"
-          class="vocab-card q-pa-lg"
+          class="quiz-card q-pa-lg"
         >
           <div class="text-h6 text-dark-text q-mb-md font-weight-bold">
             第 {{ index + 1 }} 題

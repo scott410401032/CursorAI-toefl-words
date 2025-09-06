@@ -63,6 +63,22 @@ body {
   }
 }
 
+// 測驗頁面卡片樣式 - 不使用固定高度
+.quiz-card {
+  background: $dark-card;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(37, 162, 193, 0.2);
+  }
+}
+
 // 按鈕樣式
 .btn-primary {
   background: linear-gradient(135deg, $primary 0%, $secondary 100%);
