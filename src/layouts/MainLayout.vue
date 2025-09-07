@@ -8,7 +8,7 @@
             <q-icon name="school" color="white" />
           </q-avatar>
           <div class="text-h6 text-dark-text font-weight-medium">
-            英文單字書練習庫
+            VocabQuest
           </div>
         </div>
 
@@ -61,11 +61,31 @@
                   <q-item
                     clickable
                     v-close-popup
+                    to="/toefl/by-day"
+                    class="text-dark"
+                  >
+                    <q-item-section>
+                      <q-item-label>托福單字 (按天數)</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    v-close-popup
                     to="/daily"
                     class="text-dark"
                   >
                     <q-item-section>
                       <q-item-label>一般單字</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    v-close-popup
+                    to="/daily/by-day"
+                    class="text-dark"
+                  >
+                    <q-item-section>
+                      <q-item-label>一般單字 (按天數)</q-item-label>
                     </q-item-section>
                   </q-item>
                 </q-list>
@@ -166,6 +186,20 @@
 
         <q-item
           clickable
+          to="/toefl/by-day"
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="calendar_today" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>托福單字 (按天數)</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
           to="/daily"
           class="text-white q-mb-sm"
           active-class="text-primary"
@@ -175,6 +209,20 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>一般單字</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          to="/daily/by-day"
+          class="text-white q-mb-sm"
+          active-class="text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="calendar_today" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>一般單字 (按天數)</q-item-label>
           </q-item-section>
         </q-item>
 

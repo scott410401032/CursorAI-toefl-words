@@ -5,9 +5,6 @@
       <h1 class="text-h4 text-dark-text q-mb-sm font-weight-bold">
         一般單字
       </h1>
-      <p class="text-body1 text-dark-text-secondary">
-        擴充日常英文詞彙量，提升溝通能力
-      </p>
     </div>
 
     <!-- 載入狀態 -->

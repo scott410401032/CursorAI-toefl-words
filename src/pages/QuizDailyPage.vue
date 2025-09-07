@@ -11,7 +11,7 @@
     <q-dialog v-model="showSettings" persistent>
       <q-card class="quiz-settings-dialog">
         <q-card-section class="dialog-header">
-          <div class="text-h5 text-white font-weight-bold">
+          <div class="text-h5 text-dark font-weight-bold">
             <q-icon name="quiz" class="q-mr-sm" />
             測驗設定
           </div>
@@ -31,8 +31,8 @@
               class="quiz-select"
               emit-value
               map-options
-              popup-content-class="bg-dark-card text-white"
-              options-selected-class="text-white"
+              popup-content-class="bg-dark-card text-dark"
+              options-selected-class="text-dark"
               options-dense
             />
           </div>
@@ -75,8 +75,8 @@
               class="quiz-select"
               emit-value
               map-options
-              popup-content-class="bg-dark-card text-white"
-              options-selected-class="text-white"
+              popup-content-class="bg-dark-card text-dark"
+              options-selected-class="text-dark"
               options-dense
             />
           </div>
@@ -249,7 +249,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import type { Word, DayVocabulary } from '../types/vocabulary'
 
 // 測驗狀態
@@ -271,7 +271,7 @@ const quizSettings = ref({
   selectedDays: [] as number[]
 })
 
-const questionCountOptions = [5, 10, 15, 20, 25, 30]
+const questionCountOptions = [5, 10, 15, 20, 25, 30, 50, 100, 250]
 
 // 單字資料
 const dailyData = ref<DayVocabulary[]>([])
@@ -441,10 +441,10 @@ function getOptionClass(questionId: string, optionIndex: number): string {
     if (!question) return ''
 
     if (optionIndex === question.correctAnswer) {
-      return 'bg-positive text-white'
+      return 'bg-positive text-dark'
     }
     if (userAnswers.value[questionId] === optionIndex && optionIndex !== question.correctAnswer) {
-      return 'bg-negative text-white'
+      return 'bg-negative text-dark'
     }
   }
   return ''
@@ -481,6 +481,11 @@ function submitQuiz() {
   }
 
   quizState.value = 'result'
+
+  // 滾動到頁面頂部
+  void nextTick(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  })
 }
 
 // 檢查答案是否正確

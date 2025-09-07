@@ -5,9 +5,6 @@
       <h1 class="text-h4 text-dark-text q-mb-sm font-weight-bold">
         托福單字
       </h1>
-      <p class="text-body1 text-dark-text-secondary">
-        系統化學習托福單字，提升英文能力
-      </p>
     </div>
 
     <!-- 載入狀態 -->

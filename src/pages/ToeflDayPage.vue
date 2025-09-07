@@ -5,9 +5,6 @@
       <h1 class="text-h4 text-dark-text q-mb-sm font-weight-bold">
         托福單字 - Day {{ dayNumber }}
       </h1>
-      <p class="text-body1 text-dark-text-secondary">
-        第 {{ dayNumber }} 天的托福單字學習
-      </p>
     </div>
 
     <!-- 載入狀態 -->

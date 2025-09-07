@@ -5,9 +5,6 @@
       <h1 class="text-h4 text-dark-text q-mb-sm font-weight-bold">
         按天數瀏覽一般單字
       </h1>
-      <p class="text-body1 text-dark-text-secondary">
-        按照天數規劃，持續累積一般單字
-      </p>
     </div>
 
     <!-- 載入狀態 -->
