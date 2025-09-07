@@ -4,8 +4,8 @@
       <q-toolbar class="q-px-md">
         <!-- Logo 和網站名稱 (可點擊回到首頁) -->
         <div class="row items-center q-gutter-sm cursor-pointer" @click="$router.push('/')">
-          <q-avatar size="40px" class="bg-primary">
-            <q-icon name="school" color="white" />
+          <q-avatar size="32px">
+            <img src="/logo.png" alt="VocabQuest Logo" />
           </q-avatar>
           <div class="text-h6 text-dark-text font-weight-medium">
             VocabQuest
