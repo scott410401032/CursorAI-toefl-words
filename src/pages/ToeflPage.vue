@@ -165,6 +165,9 @@ async function loadVocabularyData() {
 // 播放發音
 function playPronunciation(word: string) {
   if ('speechSynthesis' in window) {
+    // 停止當前播放
+    speechSynthesis.cancel()
+
     const utterance = new SpeechSynthesisUtterance(word)
     utterance.lang = 'en-US'
     utterance.rate = 0.8
