@@ -38,6 +38,10 @@
             <q-select
               v-model="itemsPerPage"
               :options="itemsPerPageOptions"
+              option-value="value"
+              option-label="label"
+              emit-value
+              map-options
               dense
               outlined
               class="items-per-page-select text-dark"
@@ -120,7 +124,12 @@ const toeflData = ref<DayVocabulary[]>([])
 const currentPage = ref(1)
 const itemsPerPage = ref(20)
 
-const itemsPerPageOptions = [10, 20, 50, 100]
+const itemsPerPageOptions = [
+  { label: '10', value: 10 },
+  { label: '20', value: 20 },
+  { label: '50', value: 50 },
+  { label: '100', value: 100 }
+]
 
 // 計算所有單字
 const allWords = computed(() => {

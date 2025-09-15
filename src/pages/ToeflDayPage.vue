@@ -38,6 +38,10 @@
             <q-select
               v-model="itemsPerPage"
               :options="itemsPerPageOptions"
+              option-value="value"
+              option-label="label"
+              emit-value
+              map-options
               dense
               outlined
               class="items-per-page-select text-dark"
