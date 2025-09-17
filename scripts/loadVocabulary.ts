@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { join, basename } from 'path'
 import type { DayVocabulary, Word } from '../src/types/vocabulary'
 
 // 解析 markdown 表格行
@@ -38,8 +38,8 @@ function parseMarkdownFile(filePath: string): DayVocabulary | null {
     const content = readFileSync(filePath, 'utf-8')
     const lines = content.split('\n')
 
-    // 從檔名提取 day 編號
-    const fileName = filePath.split('/').pop() || ''
+    // 從檔名提取 day 編號（跨平台）
+    const fileName = basename(filePath)
     const dayMatch = fileName.match(/(\d+)-day_\d+\.md/)
     if (!dayMatch || !dayMatch[1]) {
       console.warn(`無法從檔名 ${fileName} 提取 day 編號`)

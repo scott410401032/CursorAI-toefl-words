@@ -122,13 +122,11 @@ const loading = ref(true)
 const error = ref('')
 const toeflData = ref<DayVocabulary[]>([])
 const currentPage = ref(1)
-const itemsPerPage = ref(20)
+const itemsPerPage = ref(30)
 
 const itemsPerPageOptions = [
-  { label: '10', value: 10 },
-  { label: '20', value: 20 },
-  { label: '50', value: 50 },
-  { label: '100', value: 100 }
+  { label: '30', value: 30 },
+  { label: 'all', value: 0 }
 ]
 
 // 計算所有單字
@@ -144,12 +142,16 @@ const allWords = computed(() => {
 const totalWords = computed(() => allWords.value.length)
 
 // 計算總頁數
-const totalPages = computed(() => Math.ceil(totalWords.value / itemsPerPage.value))
+const totalPages = computed(() => {
+  const pageSize = itemsPerPage.value === 0 ? Math.max(1, totalWords.value) : itemsPerPage.value
+  return Math.max(1, Math.ceil(totalWords.value / pageSize))
+})
 
 // 計算當前頁的單字
 const paginatedWords = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage.value
-  const end = start + itemsPerPage.value
+  const pageSize = itemsPerPage.value === 0 ? totalWords.value : itemsPerPage.value
+  const start = (currentPage.value - 1) * pageSize
+  const end = start + pageSize
   return allWords.value.slice(start, end)
 })
 
